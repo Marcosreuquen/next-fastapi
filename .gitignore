@@ -33,3 +33,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+.venv
+**/__pycache__/
+.env
+venv
+fastapi.session.sql
+.vscode
+__pycache__
+.pytest__cache
+coverage.txt

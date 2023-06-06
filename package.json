@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "fastapi-dev": "pip3 install -r requirements.txt && python3 -m uvicorn api.index:app --reload",
-    "next-dev": "next dev",
-    "dev": "concurrently \"npm run next-dev\" \"npm run fastapi-dev\"",
+    "api:make-migration": "set -a && . ./.env && set +a && python3 alembic revision --autogenerate && python3 alembic upgrade head",
+    "api:freeze": "pip3 freeze > ./requirements.txt",
+    "api:prebuild": "pip3 install -r requirements.txt",
+    "api:test": "python3 pytest --disable-warnings -v -x",
+    "api:dev": "python3 -m uvicorn api.main:app --reload",
+    "next:dev": "next dev",
+    "dev": "concurrently \"npm run next:dev\" \"npm run api:dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
